@@ -38,11 +38,28 @@
                             >
                                 <el-button 
                                   type="primary" 
-                                  @click="onSubmit"
+                                  @click="onThreeSubmit"
                                 >第三方登录</el-button>
                             </el-form-item>
                         </el-form>
                     </el-card>
+                </div>
+                <!-- 第三方登录框 -->
+                <div>
+                    <el-dialog
+                        v-model="dialogVisible"
+                        title="第三方登录"
+                        width="30%"
+                    >
+                        <span>本地不能模拟，请结合自己业务进行模拟！！！</span>
+                        <template #footer>
+                        <span class="dialog-footer">
+                            <el-button type="primary" @click="dialogVisible = false">
+                            Confirm
+                            </el-button>
+                        </span>
+                        </template>
+                    </el-dialog>
                 </div>
             </el-col>
         </el-row>
@@ -50,16 +67,23 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { UserFilled, Hide, Plus } from "@element-plus/icons-vue"
+import { useRouter } from 'vue-router'
 // do not use same name with ref
+const history = useRouter()
 const form = reactive({
   name: '',
   password:''
 })
-
+const dialogVisible = ref(false)
 const onSubmit = () => {
   console.log('submit!')
+  history.push('/')
+}
+
+const onThreeSubmit  = ()=>{
+    dialogVisible.value = true
 }
 </script>
 

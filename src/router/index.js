@@ -4,12 +4,22 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/Index.vue')
+    component: () => import('../views/Index/Index.vue'),
+    children:[
+      {
+        path:"dashboard",
+        component: () => import('../views/dashboard/Index.vue'),
+      }
+    ]
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/Login/Login.vue')
+  },
+  {
+    path:'/',
+    redirect:'/dashboard'
   }
 ]
 
